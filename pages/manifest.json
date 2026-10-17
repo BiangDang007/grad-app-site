@@ -40,5 +40,12 @@
     "date": "2026-10-07",
     "lines": 145,
     "summary": "瓶頸不在「寫出 C 程式」，而在「對特定晶片的正確性驗證」。"
+  },
+  {
+    "file": "pages/cmu-programs.html",
+    "title": "CMU 專業型（course-based）碩士調查：AI／機器人／CV／軟體／ECE",
+    "date": "2026-10-18",
+    "lines": 192,
+    "summary": "最務實的門是 MS in ECE（Pittsburgh）。"
   }
 ]
