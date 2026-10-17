@@ -1,0 +1,101 @@
+<!doctype html><html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>UW Allen School（CSE）Robotics：VLM／基礎模型 vs 控制理論？</title><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap"><link rel="stylesheet" href="../style.css"></head><body><div class="wrap article"><a class="back" href="../index.html#research">← 回首頁</a>
+<h1>UW Allen School（CSE）Robotics：VLM／基礎模型 vs 控制理論？</h1>
+<p>查證日期：2026-10-07。所有內容皆為本次 fetch 到的網頁；查不到的寫「未查到」。</p>
+<h2>0. 結論（先看這裡）</h2>
+<ol><li><strong>Allen School 的 robotics 以 robot learning／基礎模型為主，控制理論幾乎沒有。</strong> 官方 Robotics 頁列 6 位教授：(a) 4 位、(b) 0 位純控制、(c) 2 位。<ul><li>其中 Srinivasa 是唯一有明顯 (b)（規劃／最佳化）成分的人：19 篇中 5 篇 (b)、9 篇 (a)、5 篇 (c)。</li></ul></li><li><strong>近兩年投稿會議分布</strong>：6 位教授共 71 筆有明確發表場地的論文（有 3 篇共同作者論文被重複計入）。<ul><li>CoRL 13、ICRA 10、IROS 8、RSS 3：機器人會議合計 34 筆（48%）。</li><li>ICML／ICLR／NeurIPS／CVPR／ICCV 合計 14 筆（20%）。</li><li>HRI／RO-MAN／UIST 合計 8 筆（11%）。</li><li>RAL／T-RO／IJRR 合計 7 筆（10%）。</li><li>其他 8 筆（11%）。</li><li><strong>CDC／ACC／L4DC／HSCC／TAC：0 筆。</strong></li><li>最接近控制的是 JMLR 與 Open J. Math. Optimization 各 1 篇 iLQR 收斂分析，皆出自 Srinivasa 實驗室。</li></ul></li><li><strong>控制理論的強項在 Allen School 之外</strong>（A&amp;A、ECE、ME），詳見 §3。</li><li><strong>重大限制：Allen School 沒有全職的獨立碩士班。</strong> PMP 只收居住在 Seattle 地區、有電腦業職涯的在職人士，台灣的 EE 學生不能直接申請（§4）。</li><li><strong>UW 工學院 2026 年新開 M.S. in Robotics</strong>（38 學分、跨 10 個工程單位、有 Action and Control 專長組、可選研究／論文式 capstone）。這最符合「AI 控制機器」的目標，下一梯次申請期為 1 月（§4）。</li></ol>
+<hr>
+<h2>1. Allen School Robotics 教授名單</h2>
+<p><strong>名單來源</strong>：<a href="https://robotics.cs.washington.edu/" target="_blank" rel="noopener">https://robotics.cs.washington.edu/</a> 。這是 JS 單頁應用，我從頁面的 JS 包 <a href="https://robotics.cs.washington.edu/assets/index-CIjho3L_.js" target="_blank" rel="noopener">https://robotics.cs.washington.edu/assets/index-CIjho3L_.js</a> 取出 faculty 陣列（6 位）。</p>
+<ul><li>該 JS 內含明顯的占位內容（例如 <code>example.edu</code> 的演講者），名單本身我另外用各教授個人頁交叉確認。</li><li>Ranjay Krishna 不在該頁名單，但 Fox／Gupta 的共同作者資料與他的個人頁都顯示他做 robotics（見 §1.2）。</li></ul>
+<p><strong>論文來源說明</strong>：Google Scholar／DBLP 無法取得（DBLP 對 curl 回 500，Scholar 未嘗試）。因此：</p>
+<ul><li>各實驗室的 publications 頁（有場地標示）是主要證據。</li><li>Fox 沒有可抓取的實驗室論文頁，我改用 OpenAlex API 查 2024 起的論文。其作者 ID 可能混入同名者，且 OpenAlex 對許多 arXiv 論文不顯示最終場地，所以 Fox 49 篇中只有 16 篇有場地。</li></ul>
+<h3>1.1 教授表</h3>
+<div class="tbl"><table>
+<thead><tr><th>教授</th><th>實驗室</th><th>2024-2026 三個代表主題</th><th>近兩年場地（筆數）</th><th>分類</th><th>來源</th></tr></thead>
+<tbody>
+<tr><td><strong>Dieter Fox</strong></td><td>Robotics &amp; State Estimation Lab (RSE-Lab)；亦與 Ai2、NVIDIA 有關</td><td>① VLM／VLA 與基礎模型：RoboPoint、Manipulate-Anything、HAMSTER、MolmoAct、FailSafe、Cosmos。② 模仿學習與資料生成：IntervenGen、SkillMimicGen、RVT-2。③ 規劃／動力學（少量）：DiMSam、DiffusionSeeder、Neural Robot Dynamics</td><td>有場地者 16：ICRA 4、IROS 3、RAL 2、CVPR 1、NeurIPS 1、T-RO 1、UIST 1、其他 3。其餘 33 篇 arXiv-only</td><td><strong>(a)</strong></td><td>教授頁 <a href="https://www.cs.washington.edu/people/faculty/fox" target="_blank" rel="noopener">https://www.cs.washington.edu/people/faculty/fox</a> 與 <a href="https://homes.cs.washington.edu/~fox/" target="_blank" rel="noopener">https://homes.cs.washington.edu/~fox/</a>（舊頁，最新內容 2017）；論文清單來自 OpenAlex API（<code>api.openalex.org/works?filter=authorships.author.id:A5108257764</code>）</td></tr>
+<tr><td><strong>Abhishek Gupta</strong></td><td>WEIRD Lab</td><td>① 從影片／模擬／生成模型學基礎模型。② 真實世界快速適應（sim-to-real、diffusion policy + RL）。③ 階層式 VLA 與機器人評測（HAMSTER、RoboArena）</td><td>8 篇：CoRL 3、ICLR 2、NeurIPS 2、RSS 1（RSS 2025 Best Paper）</td><td><strong>(a)</strong></td><td>個人頁 <a href="https://homes.cs.washington.edu/~abhgupta/" target="_blank" rel="noopener">https://homes.cs.washington.edu/~abhgupta/</a> ；實驗室 <a href="https://weirdlab.cs.washington.edu/" target="_blank" rel="noopener">https://weirdlab.cs.washington.edu/</a></td></tr>
+<tr><td><strong>Byron Boots</strong></td><td>Robot Learning Lab</td><td>① 觸覺表示學習（Sparsh、Tactile Beyond Pixels）。② 越野／輪式 sim2real 與導航（V-STRONG、Wheeled Lab、LRN）。③ MPC（Model Predictive Control for Aggressive Driving Over Uneven Terrain，RSS 2024）</td><td>13 篇：CoRL 6、ICRA 3、ICML 1、ICLR 1、ICCV 1、RSS 1</td><td><strong>(a)</strong>（10 篇 (a)、2 篇 (b)、1 篇未判）</td><td>實驗室論文頁 <a href="https://robotlearning.cs.washington.edu/publications/" target="_blank" rel="noopener">https://robotlearning.cs.washington.edu/publications/</a> ；個人頁 <a href="https://homes.cs.washington.edu/~bboots/" target="_blank" rel="noopener">https://homes.cs.washington.edu/~bboots/</a>（最新內容 2022，未列 2024+）</td></tr>
+<tr><td><strong>Siddhartha Srinivasa</strong></td><td>Personal Robotics Lab</td><td>① 規劃與最佳化：Incremental Generalized Hybrid A\*、Lazy Incremental Search、iLQR 收斂（JMLR）。② 模仿學習與資料（CCIL、ATK、DriveGPT）。③ 輔助進食機器人（HRI）</td><td>18 篇有場地：ICLR 2、CoRL 2、ICML 2、CVPR 1、HRI 3、IROS 1、RSS 1、ICRA 1、RAL 1、JMLR 1、OJMO 1、IJRR 2（另有 1 篇 arXiv）</td><td><strong>(a)/(b)/(c) 混合</strong>：9 (a)、5 (b)、5 (c)，依多數歸 (a)</td><td>實驗室論文頁 <a href="https://personalrobotics.cs.washington.edu/publications/" target="_blank" rel="noopener">https://personalrobotics.cs.washington.edu/publications/</a> ；個人頁 <a href="https://goodrobot.ai" target="_blank" rel="noopener">https://goodrobot.ai</a></td></tr>
+<tr><td><strong>Maya Cakmak</strong></td><td>Human-Centered Robotics Lab</td><td>① 輔助機器人（進食、居家）。② 遠端操作與使用者控制（3D mouse、teleop assistance）。③ 用基礎模型教機器人（Show and Tell，CoRL 2024）</td><td>10 篇：HRI 2、RO-MAN 2、IROS 2、CoRL 2、ICRA 1、Annual Review 1</td><td><strong>(c)</strong>（6 篇 (c)、4 篇 (a)）</td><td>實驗室論文頁 <a href="https://hcrlab.cs.washington.edu/publications/" target="_blank" rel="noopener">https://hcrlab.cs.washington.edu/publications/</a> ；個人頁 <a href="https://www.mayacakmak.io" target="_blank" rel="noopener">https://www.mayacakmak.io</a></td></tr>
+<tr><td><strong>Joshua R. Smith</strong></td><td>Sensor Systems Lab（亦屬 ECE 聯聘）</td><td>① 感測器、無線供電、RFID。② 電靜力煞車／離合器（IJRR 2024、ICRA 2024）。③ 倉儲抓取（TetraGrip、OptiGrasp，IROS 2025）</td><td>6 篇有場地：IROS 2、IJRR 1、ICRA 1、Sensors 1、J-RFID 1（另 1 篇 arXiv）</td><td><strong>(c)</strong></td><td>實驗室論文頁 <a href="https://sensor.cs.washington.edu/publications" target="_blank" rel="noopener">https://sensor.cs.washington.edu/publications</a> ；個人頁 <a href="https://sensor.cs.washington.edu/joshua-r-smith-phd" target="_blank" rel="noopener">https://sensor.cs.washington.edu/joshua-r-smith-phd</a></td></tr>
+</tbody></table></div>
+<p>分類依據是我對論文標題的逐篇標註（主觀判斷，未讀全文）。Boots 有 1 篇（Toward Self-Righting and Recovery in the Wild）未判。</p>
+<h3>1.2 名單之外但做 robotics 的 Allen 教授</h3>
+<ul><li><strong>Ranjay Krishna</strong>（Allen School，RAIVN lab）。個人頁 <a href="https://ranjaykrishna.com" target="_blank" rel="noopener">https://ranjaykrishna.com</a> 列出：<ul><li>RoboPoint（CoRL 2024）</li><li>Manipulate-Anything（CoRL 2024）</li><li>MolmoAct（ICRA 2026）</li><li>MolmoSpaces（RSS 2026）</li><li>這 4 篇皆為 VLM／基礎模型方向，歸 <strong>(a)</strong>。</li><li>該頁同時寫他是 Microsoft SuperIntelligence 的 Member of Technical Staff，現況需確認。</li><li>他不在官方 Robotics 名單中，所以不計入 (a)(b)(c) 的 6 位。</li></ul></li></ul>
+<h3>1.3 (a)(b)(c) 人數（官方名單 6 位）</h3>
+<div class="tbl"><table>
+<thead><tr><th>類別</th><th>人數</th><th>名單</th></tr></thead>
+<tbody>
+<tr><td>(a) VLM／基礎模型／robot learning</td><td><strong>4</strong></td><td>Fox、Gupta、Boots、Srinivasa（Srinivasa 同時有 (b) 成分）</td></tr>
+<tr><td>(b) 控制理論／規劃／動力學／最佳化</td><td><strong>0</strong>（純）；Srinivasa 部分</td><td>—</td></tr>
+<tr><td>(c) 人機互動／感測／硬體</td><td><strong>2</strong></td><td>Cakmak、Smith</td></tr>
+</tbody></table></div>
+<p>若把 Krishna 算入，(a) 為 5 位、總計 7 位。</p>
+<hr>
+<h2>2. 論文場地分布（6 位教授 2024-2026，含重複）</h2>
+<div class="tbl"><table>
+<thead><tr><th>場地類別</th><th>筆數</th><th>占比</th><th>細項</th></tr></thead>
+<tbody>
+<tr><td>CoRL／ICRA／IROS／RSS</td><td>34</td><td>48%</td><td>CoRL 13、ICRA 10、IROS 8、RSS 3</td></tr>
+<tr><td>ML／視覺（ICML／ICLR／NeurIPS／CVPR／ICCV）</td><td>14</td><td>20%</td><td>Boots 3、Srinivasa 5、Gupta 4、Fox 2</td></tr>
+<tr><td>HRI／RO-MAN／UIST</td><td>8</td><td>11%</td><td>Srinivasa 3、Cakmak 4、Fox 1</td></tr>
+<tr><td>機器人期刊（RAL／T-RO／IJRR）</td><td>7</td><td>10%</td><td>—</td></tr>
+<tr><td>其他（JMLR、OJMO、Annual Review、Sensors、J-RFID、JOSS、LNCS）</td><td>8</td><td>11%</td><td>—</td></tr>
+<tr><td><strong>控制會議／期刊（CDC／ACC／L4DC／HSCC／TAC）</strong></td><td><strong>0</strong></td><td><strong>0%</strong></td><td>—</td></tr>
+<tr><td>合計</td><td>71</td><td>100%</td><td>—</td></tr>
+</tbody></table></div>
+<p><strong>重複計入</strong>：Electrostatic brakes（IJRR 2024）同時列在 Srinivasa 與 Smith 頁。Long Range Navigator（CoRL 2025）與 Multi-Sample Long Range Path Planning（ICRA 2024）同時列在 Boots 與 Srinivasa 頁。</p>
+<p><strong>不含</strong>：各人 arXiv-only 或場地不明的論文（Fox 33 篇、Srinivasa 1 篇、Smith 1 篇）。這些在 VLM／基礎模型方向偏多，所以實際的 (a) 比例可能更高。</p>
+<hr>
+<h2>3. UW 其他系的控制／機器人強項</h2>
+<div class="tbl"><table>
+<thead><tr><th>教授（系）</th><th>實驗室</th><th>主題</th><th>觀察到的場地</th><th>來源</th></tr></thead>
+<tbody>
+<tr><td><strong>Karen Leung</strong>（A&amp;A，助理教授）</td><td>Control and Trustworthy Robotics Lab (CTRL)；UW+Amazon Science Hub 主任</td><td>安全／可信賴自主系統：控制屏障函數、擴散規劃、共形風險控制、STL</td><td>2024-2026 共 17 項，有場地者 10：ICRA 2、IROS 2、RAL 2、AIAA SciTech 2、ACC 1、CVPR workshop 1；其餘為 preprint／投稿中。她偏「控制 + 學習」混合</td><td><a href="https://faculty.washington.edu/kymleung/" target="_blank" rel="noopener">https://faculty.washington.edu/kymleung/</a> ；<a href="https://depts.washington.edu/ctrl/publications/" target="_blank" rel="noopener">https://depts.washington.edu/ctrl/publications/</a></td></tr>
+<tr><td><strong>Mehran Mesbahi</strong>（A&amp;A，系主任 2026-07 起）</td><td>RAIN Lab（Robotics, Aerospace, and Information Networks）</td><td>自動控制、自主載具、最佳化、太空系統、網路化系統</td><td><strong>未查到</strong>（RAIN Lab 網站只抓到導覽列，無論文列表）</td><td><a href="https://www.aa.washington.edu/facultyfinder/mehran-mesbahi" target="_blank" rel="noopener">https://www.aa.washington.edu/facultyfinder/mehran-mesbahi</a> ；<a href="https://depts.washington.edu/uwrainlab/" target="_blank" rel="noopener">https://depts.washington.edu/uwrainlab/</a></td></tr>
+<tr><td><strong>Kristi Morgansen</strong>（A&amp;A）</td><td>Nonlinear Dynamics and Control Lab</td><td>非線性控制、多載具協調、仿生飛行、整合感測與致動</td><td><strong>未查到</strong></td><td><a href="https://www.aa.washington.edu/facultyfinder/kristi-morgansen" target="_blank" rel="noopener">https://www.aa.washington.edu/facultyfinder/kristi-morgansen</a></td></tr>
+<tr><td><strong>Lillian Ratliff</strong>（ECE，Allen School 兼任）</td><td>研究組（官方頁未載實驗室名）</td><td>學習、最佳化與賽局理論；歸類於 Robotics and Controls</td><td>官方頁只列 2019 年資料，已過時；近兩年場地<strong>未查到</strong>。她是 Leung 的 IROS 2025 論文共同作者</td><td><a href="https://people.ece.uw.edu/ratliff_lillian" target="_blank" rel="noopener">https://people.ece.uw.edu/ratliff_lillian</a> ；<a href="https://depts.washington.edu/ctrl/publications/" target="_blank" rel="noopener">https://depts.washington.edu/ctrl/publications/</a></td></tr>
+<tr><td><strong>Sam Burden</strong>（ECE）</td><td>AMP Lab（Laboratory for Amplifying Movement and Performance，搜尋結果摘要）</td><td>感知運動控制、混合系統、人機共適應</td><td>頁面列 Science Robotics、Nature Machine Intelligence 等，但未標年份；近兩年場地<strong>未查到</strong></td><td><a href="https://people.ece.uw.edu/burden_sam" target="_blank" rel="noopener">https://people.ece.uw.edu/burden_sam</a> ；<a href="https://faculty.washington.edu/sburden/bio" target="_blank" rel="noopener">https://faculty.washington.edu/sburden/bio</a>（僅搜尋結果，未 fetch）</td></tr>
+<tr><td><strong>Sawyer Fuller</strong>（ME，Allen 兼任）</td><td>Autonomous Insect Robotics Laboratory</td><td>昆蟲尺度機器人、運算受限視覺導航、控制與機構整合</td><td>頁面只列 2021-2022 論文（含 CDC 2021 的 Python Control Systems Library）；近兩年<strong>未查到</strong></td><td><a href="https://www.me.washington.edu/facultyfinder/sawyer-fuller" target="_blank" rel="noopener">https://www.me.washington.edu/facultyfinder/sawyer-fuller</a></td></tr>
+</tbody></table></div>
+<p><strong>補充</strong>：</p>
+<ul><li>A&amp;A 控制研究頁另列 Martin Nisser（Programmable Matter Lab）與 Amir Taghvaei，我未深查（<a href="https://www.aa.washington.edu/research/control" target="_blank" rel="noopener">https://www.aa.washington.edu/research/control</a>）。</li><li><strong>Behçet Açıkmeşe：現況未確認。</strong> 搜尋結果摘要稱他是 UW A&amp;A／ECE 教授，主持 Autonomous Controls Lab（凸最佳化控制、MPC）。但 A&amp;A 控制研究頁目前沒列他或該實驗室。他仍出現在 Leung 實驗室 2025 年論文的共同作者中（RAL、AIAA SciTech）。請向系上確認。</li></ul>
+<hr>
+<h2>4. 碩士生能否進實驗室</h2>
+<h3>4.1 Allen School：PMP 不適用</h3>
+<ul><li>官方研究所頁：「The Allen School does not currently offer a stand-alone, full-time master's degree program.」外部申請人沒有獨立 MS 入學管道。<a href="https://www.cs.washington.edu/academics/graduate/" target="_blank" rel="noopener">https://www.cs.washington.edu/academics/graduate/</a></li><li>該頁列出的碩士相關選項：<ul><li>PhD（含自動取得 MS）。</li><li>5 年 B.S./M.S.，限 Allen School 現有或近期大學部學生。</li><li>PMP。</li><li>AI 證書。</li></ul></li><li><strong>PMP</strong>：兼讀、晚間、約 40 學分、平均 2.5–3 年，為在職軟體人員設計。<a href="https://www.cs.washington.edu/academics/pmp/" target="_blank" rel="noopener">https://www.cs.washington.edu/academics/pmp/</a><ul><li>申請資格：有電腦業專業背景、<strong>申請時實際居住於 Seattle／Puget Sound 地區</strong>、可在美國兼讀。<a href="https://www.cs.washington.edu/academics/graduate/pmp/admissions/" target="_blank" rel="noopener">https://www.cs.washington.edu/academics/graduate/pmp/admissions/</a></li><li>搜尋結果摘要另稱需 ≥2 年全職軟體開發經驗；該細節我沒 fetch 到原頁，標為 [unverified — user to confirm]。</li><li>PMP 是修課制；頁面未提及論文或研究要求，也未提及進實驗室。</li></ul></li><li><strong>PMP 能否修 robotics 課</strong>：未查到明文規定。課程頁自身限制見 4.3。</li><li><strong>結論</strong>：台灣 EE 學生無法申請 Allen School 碩士，要做 Allen 的 robotics 只能走 PhD 或其他系所／新 Robotics 碩士。</li></ul>
+<h3>4.2 替代路徑</h3>
+<div class="tbl"><table>
+<thead><tr><th>路徑</th><th>重點</th><th>來源</th></tr></thead>
+<tbody>
+<tr><td><strong>UW M.S. in Robotics</strong>（工學院，2026 秋首屆）</td><td>38 學分、在校、全職或在職皆可。核心課：Modern Robotic Systems I、II、Robotic System Integration。5 個專長組：Machine Learning and AGI／Perception and Sensing／Cognition and Reasoning／<strong>Action and Control</strong>／System Integration。Capstone 7 學分，有「faculty-led research and thesis」選項（需核准）。申請：GPA ≥3.00、微積分與線代、一頁 SOP、一封推薦信；下一梯次截止月份為 1 月；總學費約 $57,000（$1,500／學分，不分身分）。授課含 Xu Chen（ME，主任）、Ashis Banerjee（ISE）、<strong>Dieter Fox</strong>、<strong>Karen Leung</strong>。首屆限收 35 人，2026-09-01~10 收件</td><td><a href="https://www.engr.washington.edu/graduate-professional/professional-masters/robotics-master" target="_blank" rel="noopener">https://www.engr.washington.edu/graduate-professional/professional-masters/robotics-master</a> ；<a href="https://www.engr.washington.edu/news/article/2026-08-27/uw-engineering-launches-robotics-programs" target="_blank" rel="noopener">https://www.engr.washington.edu/news/article/2026-08-27/uw-engineering-launches-robotics-programs</a> ；<a href="https://www.engr.washington.edu/news/article/2026-08-12/message-director-robotics-education" target="_blank" rel="noopener">https://www.engr.washington.edu/news/article/2026-08-12/message-director-robotics-education</a></td></tr>
+<tr><td><strong>UW ECE MSEE（Daytime）</strong></td><td>課程制或論文制；論文制為「更深入研究、適合要讀博士者」；ECE 有 Robotics and Controls 組</td><td><a href="https://ece.uw.edu/academics/grad" target="_blank" rel="noopener">https://ece.uw.edu/academics/grad</a>（搜尋結果摘要，未 fetch）</td></tr>
+<tr><td><strong>UW A&amp;A MSAA</strong></td><td>論文可選；≥45 學分；全職約 2 年；GPA ≥3.0</td><td><a href="https://www.aa.washington.edu/students/academics/msaa" target="_blank" rel="noopener">https://www.aa.washington.edu/students/academics/msaa</a>（搜尋結果摘要，未 fetch）</td></tr>
+</tbody></table></div>
+<p>本次未查證的事項（UW 是否接受 EE 背景、國際生資助、錄取率），請至各網頁確認。</p>
+<h3>4.3 Robotics 課程代號（皆為本次 fetch 到的頁面）</h3>
+<div class="tbl"><table>
+<thead><tr><th>課號</th><th>名稱</th><th>備註</th><th>來源</th></tr></thead>
+<tbody>
+<tr><td>CSE 571</td><td>Probabilistic Robotics</td><td>最近開課 Winter 2026，授課 Fox。先修：CSE major 且修過 CSE 473（或教師同意）。<strong>對非 CSE 學生有限制</strong></td><td><a href="https://courses.cs.washington.edu/courses/cse571/" target="_blank" rel="noopener">https://courses.cs.washington.edu/courses/cse571/</a></td></tr>
+<tr><td>CSE 478</td><td>Autonomous Robotics</td><td>最近開課 Spring 2026，授課 Srinivasa。先修 CSE 332（必）、CSE 312（建議）。頁面未寫限制</td><td><a href="https://courses.cs.washington.edu/courses/cse478/" target="_blank" rel="noopener">https://courses.cs.washington.edu/courses/cse478/</a></td></tr>
+<tr><td>CSE 481C</td><td>Robotics Capstone</td><td>只見於 Robotics 頁清單</td><td><a href="https://robotics.cs.washington.edu/" target="_blank" rel="noopener">https://robotics.cs.washington.edu/</a></td></tr>
+<tr><td>CSE 599G</td><td>Deep Robotic Learning</td><td>只見於 Robotics 頁清單</td><td><a href="https://robotics.cs.washington.edu/" target="_blank" rel="noopener">https://robotics.cs.washington.edu/</a></td></tr>
+<tr><td>A A 547</td><td>Linear Systems Theory（4 學分）</td><td>A&amp;A 課程目錄</td><td><a href="https://www.washington.edu/students/crscat/aa.html" target="_blank" rel="noopener">https://www.washington.edu/students/crscat/aa.html</a></td></tr>
+<tr><td>A A 548</td><td>Linear Multivariable Control（3 學分）：MIMO、Lyapunov、LQR、觀測器</td><td>同上</td><td>同上</td></tr>
+<tr><td>A A 549</td><td>Estimation and System Identification（3 學分）</td><td>同上</td><td>同上</td></tr>
+<tr><td>A A 578</td><td>Convex Optimization（4 學分）</td><td>同上</td><td>同上</td></tr>
+<tr><td>A A 510</td><td>Mathematical Foundations of Systems Theory（4 學分）</td><td>同上</td><td>同上</td></tr>
+<tr><td>A A 591</td><td>Robotics and Control Systems Colloquium（1 學分）</td><td>同上</td><td>同上</td></tr>
+</tbody></table></div>
+<hr>
+<h2>5. 跨系 robotics 組織</h2>
+<ul><li><strong>UW + Amazon Science Hub</strong>：UW 與 Amazon 的合作，涵蓋 AI／機器人，初始 Amazon 投資 190 萬美元，支持博士生獎學金與合作研究。<a href="https://sciencehub.uw.edu/" target="_blank" rel="noopener">https://sciencehub.uw.edu/</a> ；<a href="https://www.washington.edu/news/2022/02/09/uw-and-amazon-announce-creation-of-the-science-hub/" target="_blank" rel="noopener">https://www.washington.edu/news/2022/02/09/uw-and-amazon-announce-creation-of-the-science-hub/</a><ul><li>主任資訊矛盾：Leung 個人頁寫她是 Director；Smith 個人頁寫他 directs 該 Hub。以較新的 Leung 頁為準，但需確認。</li></ul></li><li><strong>UW Robotics</strong>（robotics.cs.washington.edu）：Allen School 的 robotics 群組入口，列 6 個實驗室。這是 Allen 內部，並非跨系中心。</li><li><strong>UW 工學院 Robotics 教育計畫</strong>：M.S. in Robotics 與 Graduate Certificate in Applied Robotics，整合 10 個工程單位、Boeing Advanced Research Collaboration (BARC)、UW-Amazon Science Hub 與 Allen School robotics 實驗室。<a href="https://www.engr.washington.edu/news/article/2026-08-27/uw-engineering-launches-robotics-programs" target="_blank" rel="noopener">https://www.engr.washington.edu/news/article/2026-08-27/uw-engineering-launches-robotics-programs</a></li></ul>
+<hr>
+<h2>6. 對你的建議（依證據，非保證）</h2>
+<ul><li>目標若是「VLM／基礎模型／robot learning」：Fox、Gupta、Boots 與 Krishna 是主力，但要進 Allen 只有 PhD 一途。</li><li>目標若是「控制理論 + AI」：<ul><li>看 A&amp;A 的 Leung（CTRL，控制 + 學習，2025 NSF CAREER）與 Mesbahi。</li><li>看 ECE 的 Ratliff、Burden。</li><li>看新的 M.S. in Robotics 的 Action and Control 組。</li><li>Allen 內只有 Srinivasa 有少量規劃／最佳化工作。</li></ul></li></ul>
+<hr>
+<h2>7. 未查到清單</h2>
+<ol><li>Google Scholar 與 DBLP：DBLP 對 curl 回 500（反爬），Scholar 未嘗試。Fox 的場地分布改用 OpenAlex。其作者 ID 可能混入同名者，且 33／49 篇無最終場地。</li><li>RSE-Lab 的 publications 頁只抓到導覽列，無 2024+ 論文列表。Fox 個人頁最新內容為 2017 年。</li><li>Boots 個人頁最新內容為 2022，故其近兩年論文只依實驗室頁。</li><li>WEIRD Lab 官網無論文列表，Gupta 的清單來自個人頁。</li><li>Mesbahi、Morgansen 的近兩年論文場地未取得（RAIN Lab 網站內容未抓到）。</li><li>Ratliff 的近兩年論文場地：官方頁只列 2019 年，已過時。</li><li>Burden 近兩年論文場地：頁面只列 Science Robotics 等，無年份。</li><li>Fuller 近兩年論文：頁面只列 2021-2022。</li><li>Açıkmeşe 現況與個人頁：A&amp;A 控制頁未列；<code>aa.washington.edu/faculty/acikmese</code> 回 404。</li><li>Nisser、Taghvaei 的研究細節未查。</li><li>PMP 是否可做研究／進實驗室：頁面無明文。PMP 是否限 2 年工作經驗僅有搜尋摘要，未取得原頁。</li><li>PMP 學生能否修 CSE 571 / 478：未查到明文。CSE 571 先修寫 CSE major。</li><li>ECE MSEE 與 A&amp;A MSAA 的詳細入學與資助資格：只有搜尋結果摘要，未 fetch 原頁。</li><li>M.S. in Robotics 的具體課號與下一梯次（2027 秋）的確切截止日：頁面只寫「January」，無年份與日期。</li><li>GeekWire 關於 Robotics 碩士的文章回 403，未取得。</li><li>Smith 頁說他 directs UW+Amazon Science Hub，與 Leung 頁衝突，未解決。</li><li>工具使用次數：實際約 50 次 fetch／search，超出預計的 20-30 次，另有 curl 取得 JS 包與 OpenAlex／DBLP／Semantic Scholar API。Semantic Scholar 的作者 ID 分裂嚴重，結果未採用。</li></ol>
+</div></body></html>

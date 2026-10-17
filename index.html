@@ -53,8 +53,8 @@ td.d{font-family:var(--mono);font-variant-numeric:tabular-nums;white-space:nowra
 .card .big{font-family:var(--mono);font-size:1.35rem;font-weight:500;line-height:1.25}
 .card small{color:var(--muted);display:block;margin-top:4px}
 ol,ul{padding-left:1.3em} li{margin:4px 0}
-.note{border-left:3px solid var(--accent);background:var(--accent-soft);padding:10px 14px;border-radius:0 6px 6px 0;margin:14px 0;max-width:80ch}
-.note.warn{border-color:var(--warn);background:var(--warn-soft)}
+.note{border:1px solid var(--line);background:var(--accent-soft);padding:10px 14px;border-radius:6px;margin:14px 0;max-width:80ch}
+.note.warn{background:var(--warn-soft)}
 .src{font-size:.8rem;color:var(--muted);margin-top:10px}
 a{color:var(--accent)}
 </style>
@@ -80,6 +80,7 @@ a{color:var(--accent)}
   <button role="tab" data-tab="cmu">CMU</button>
   <button role="tab" data-tab="us">其他美國學程</button>
   <button role="tab" data-tab="ntu">台大</button>
+  <button role="tab" data-tab="research">調查檔</button>
 </nav>
 
 <section role="tabpanel" id="timeline">
@@ -209,7 +210,24 @@ a{color:var(--accent)}
     <li>就學計畫裡每一個名詞都要能被追問（world model、sim-to-real、policy learning）</li>
     <li>GPA 偏低的回答：直接承認，接「大三下之後的專題／修課表現」當證據</li>
   </ol>
-  <p class="src">相關檔案：台大目標所教授名單_2026-10-06.md、台大AI硬體與控制實驗室_2026-10-07.md、台大電機甲自動控制_錄取案例_2026-10-07.md。</p>
+  <p class="src">相關檔案：台大目標所教授名單_2026-10-06.md、台大AI硬體與控制實驗室_2026-10-07.md、台大電機甲自動控制_錄取案例_2026-10-07.md（這三份已不在 Desktop 上）。</p>
+</section>
+
+<section role="tabpanel" id="research">
+  <h2>完整調查檔</h2>
+  <p>原本的 Markdown 檔已全文轉成網頁，每個表格、每個 URL、每個 [unverified] 標記都保留。</p>
+  <div class="tbl"><table>
+    <thead><tr><th>日期</th><th>調查</th><th>一句話結論</th></tr></thead>
+    <tbody>
+      <tr><td class="d">2026-10-07</td><td><a href="pages/us-robotics-ms.html">美國機器人／自主系統／AI 硬體碩士調查</a></td><td>頂尖 robotics 碩士（CMU MRSD、Michigan、Northwestern、GT）是 reach 而且偏難；Northeastern、UMD、Purdue、ASU 有實際錄取紀錄。</td></tr>
+      <tr><td class="d">2026-10-07</td><td><a href="pages/uw-cse-robotics.html">UW Allen School Robotics：VLM／基礎模型 vs 控制理論</a></td><td>Allen School 的 robotics 以 robot learning／基礎模型為主，控制理論幾乎沒有。</td></tr>
+      <tr><td class="d">2026-10-07</td><td><a href="pages/control-careers-abroad.html">國外讀控制碩士：出路與待遇（美／新／德）</a></td><td>「自駕規控核心演算法必須 PhD」沒有證據支持；Zoox 規劃職缺要 Master。</td></tr>
+      <tr><td class="d">2026-10-07</td><td><a href="pages/ntu-control-reputation.html">台大自控評價為什麼低：社群觀點</a></td><td>進去難、出來多半做韌體，「投入跟報酬不成比例」才是被嫌的主因。</td></tr>
+      <tr><td class="d">2026-10-07</td><td><a href="pages/ai-for-hardware-startups.html">AI for 韌體與硬體：新創題目地圖</a></td><td>控制工程師職缺最明確的是 AI 控制機器一類；韌體＋HIL 是 EE 可切入的新興邊緣，但公司極小。</td></tr>
+      <tr><td class="d">2026-10-07</td><td><a href="pages/ai-for-firmware-industry.html">AI for 韌體：業界現況</a></td><td>瓶頸不在「寫出 C 程式」，而在「對特定晶片的正確性驗證」。</td></tr>
+    </tbody>
+  </table></div>
+  <p class="src">2026-10-18 的 CMU 與 Stanford／Berkeley／MIT 專業型碩士調查完成後會加到這裡。</p>
 </section>
 </div>
 

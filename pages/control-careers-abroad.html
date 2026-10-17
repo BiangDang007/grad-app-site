@@ -1,0 +1,108 @@
+<!doctype html><html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>國外讀控制碩士：出路與待遇（美國／新加坡／德國）</title><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap"><link rel="stylesheet" href="../style.css"></head><body><div class="wrap article"><a class="back" href="../index.html#research">← 回首頁</a>
+<h1>國外讀控制碩士：出路與待遇（美國／新加坡／德國）</h1>
+<p>查證日期：2026-10-07。規則：數字只取自本次實際讀到的頁面或官方 API；讀不到的標「未查到」；只有搜尋結果摘要、沒讀到原頁的標 <code>[未驗證]</code>。</p>
+<h2>0. 先講限制（誠實版）</h2>
+<ul><li>德國 Stepstone、jobvector、Glassdoor、Indeed、104、1111、Control Engineering 薪資調查都擋爬蟲（403 / Cloudflare），讀不到。德國改用 Gehalt.de、JobJump、INGENIEURCENTER；台灣用 104 官方部落格的職類平均。我沒有繞過任何機器人驗證。</li><li>新加坡 MOM 的畢業生調查（GES）只涵蓋學士，沒有碩士數字。碩士起薪只能用「學士起薪＋職缺薪資」推。</li><li>新加坡 MyCareersFuture（MCF）網頁是 JS 渲染，但官方公開 API 可讀，下面的統計是我直接算的。</li><li>職缺薪資是「公告區間」，不是實領中位數；多數職缺已下架或日期不明，只能當量級參考。</li></ul>
+<h2>1. 職涯路徑</h2>
+<div class="tbl"><table>
+<thead><tr><th>路徑</th><th>典型職稱</th><th>雇主（有職缺頁來源）</th><th>核心技能</th><th>是否需要 PhD</th><th>來源</th></tr></thead>
+<tbody>
+<tr><td>自駕規劃／控制</td><td>Software Engineer - Controls / Motion Planning</td><td>Zoox、Waymo、Tesla</td><td>C++、PID/LQR/MPC、濾波器設計、車輛動力學、規劃演算法（A*、RRT、PRM）</td><td>不必。Zoox Controls 職缺寫「BS 或 MS」，PhD 是加分；Zoox Motion Planning 初階寫「Master's degree in CS or related」</td><td><a href="https://builtin.com/job/senior-staff-software-engineer-controls/7321598" target="_blank" rel="noopener">Zoox Controls（Senior/Staff）</a>、<a href="https://jobs.luxcapital.com/companies/zoox/jobs/251386-software-engineer-motion-planning" target="_blank" rel="noopener">Zoox Motion Planning</a></td></tr>
+<tr><td>機器人／人形機器人控制</td><td>Robotics Controls Engineer、Whole-body control / RL</td><td>Tesla Optimus、Figure、Boston Dynamics</td><td>動力學與控制（最好有腿式機器人）、RL（PPO、SAC）、sim-to-real、PLC／伺服調校（製造端）</td><td>研究型職位偏 PhD：Boston Dynamics Staff Research Roboticist 要「Master's or PhD」。控制／製造端不要求</td><td><a href="https://zerogtalent.com/robotics-jobs/figure-ai/staff-reinforcement-learning-engineer-whole-body-control-4671442006" target="_blank" rel="noopener">Figure WBC RL</a>、<a href="https://jobright.ai/jobs/info/6a6936fb36d36c1ff2998d1a" target="_blank" rel="noopener">Tesla Optimus Robotics Controls</a>、<a href="https://www.builtinboston.com/job/staff-research-roboticist/10938229" target="_blank" rel="noopener">Boston Dynamics</a></td></tr>
+<tr><td>太空 GNC</td><td>GNC Engineer</td><td>SpaceX（Starlink、Dragon、Starship、Starfall）</td><td>C++／Python、軌道力學、狀態估計、航天器控制、避碰</td><td>不必。SpaceX Starlink GNC：最低 Bachelor 相關科系，偏好 Master 或 PhD</td><td><a href="https://jobs.thrivecap.com/companies/spacex/jobs/83465457-gnc-engineer-starlink" target="_blank" rel="noopener">SpaceX GNC (Starlink)</a></td></tr>
+<tr><td>半導體設備／精密機電控制</td><td>Senior Controls Engineer、Motion Control Engineer</td><td>ASML、Applied Materials</td><td>控制理論、系統動力學、MATLAB/Simulink、伺服設計</td><td>不必。ASML Senior Controls（San Diego）要 Master 以上＋4-9 年；Applied Materials 把 M.Sc 列為加分（搜尋摘要 <code>[未驗證]</code>）</td><td><a href="https://www.asml.com/en/careers/find-your-job/senior-controls-engineer-j00350358" target="_blank" rel="noopener">ASML Senior Controls Engineer</a></td></tr>
+<tr><td>電池／動力系統控制</td><td>Battery Control / Power Electronic Controls Engineer</td><td>Rivian、Tesla、GM</td><td>電池管理、功率電子控制、MPC</td><td>未查到（只看到 Rivian 職缺標題，沒讀到原頁）</td><td>搜尋結果摘要 <code>[未驗證]</code></td></tr>
+<tr><td>製程控制（石化／化工）</td><td>Advanced Process Control (APC) Engineer</td><td>ABB、Honeywell、SABIC</td><td>APC 軟體（Honeywell Profit Suite、Aspen DMC3、ABB PnC）、多年廠端經驗</td><td>搜尋到的職缺多要 5-15 年經驗，沒看到 PhD 要求</td><td>搜尋結果摘要 <code>[未驗證]</code></td></tr>
+<tr><td>量化金融</td><td>—</td><td>—</td><td>—</td><td>未查到（本次沒有找到把控制碩士導向量化的證據，不寫）</td><td>—</td></tr>
+</tbody></table></div>
+<h2>2. 薪資</h2>
+<h3>2.1 美國（USD／年）</h3>
+<div class="tbl"><table>
+<thead><tr><th>項目</th><th>數字</th><th>年份／日期</th><th>來源</th></tr></thead>
+<tbody>
+<tr><td>BLS 電機／電子工程師 中位數</td><td>125,040（電機 120,630；電子 130,220）</td><td>May 2025</td><td><a href="https://www.bls.gov/ooh/architecture-and-engineering/electrical-and-electronics-engineers.htm" target="_blank" rel="noopener">BLS OOH</a></td></tr>
+<tr><td>BLS 機械工程師 中位數</td><td>104,110</td><td>May 2025</td><td><a href="https://www.bls.gov/ooh/architecture-and-engineering/mechanical-engineers.htm" target="_blank" rel="noopener">BLS OOH</a></td></tr>
+<tr><td>BLS 航太工程師 中位數</td><td>134,960</td><td>May 2025</td><td><a href="https://www.bls.gov/ooh/architecture-and-engineering/aerospace-engineers.htm" target="_blank" rel="noopener">BLS OOH</a></td></tr>
+<tr><td>Levels.fyi 機械工程師（全美）總薪酬中位數</td><td>125,194（P25 99,000／P75 166,000／P90 218,000；n=2,414）；灣區 222,000</td><td>頁面更新日不明，2026 抓取</td><td><a href="https://www.levels.fyi/t/mechanical-engineer/locations/united-states" target="_blank" rel="noopener">Levels.fyi</a></td></tr>
+<tr><td>Levels.fyi Tesla 機械工程師</td><td>P1 總薪酬 107K（底薪 98.6K）→ P4 280K（底薪 185K）；中位數 155K（n=727）</td><td>2026-10-06</td><td><a href="https://www.levels.fyi/companies/tesla/salaries/mechanical-engineer" target="_blank" rel="noopener">Levels.fyi Tesla</a></td></tr>
+<tr><td>Levels.fyi SpaceX 機械工程師</td><td>L1 總薪酬 130K（底薪 104K）→ L4 246K；中位數 140K（n=141）</td><td>2026-10-06</td><td><a href="https://www.levels.fyi/companies/spacex/salaries/mechanical-engineer" target="_blank" rel="noopener">Levels.fyi SpaceX</a></td></tr>
+<tr><td>Levels.fyi Waymo「Hardware Engineer」（不分控制／機器人）</td><td>L3 總薪酬 204K（底薪 135K）→ L6 481K（底薪 251K）；中位數 380K（n=24）</td><td>2026-10-06</td><td><a href="https://www.levels.fyi/companies/waymo/salaries/hardware-engineer" target="_blank" rel="noopener">Levels.fyi Waymo</a></td></tr>
+<tr><td>專屬「Controls Engineer」的 Levels.fyi 彙總</td><td>未查到（搜尋只回傳 EOSYS 單一公司：中位 136,000，與目標雇主無關，不採用）</td><td>—</td><td>—</td></tr>
+</tbody></table></div>
+<p>自駕／機器人／太空公司職缺公告（底薪區間，USD／年）：</p>
+<div class="tbl"><table>
+<thead><tr><th>公司／職缺</th><th>區間</th><th>日期／狀態</th><th>來源</th></tr></thead>
+<tbody>
+<tr><td>SpaceX GNC Engineer (Starlink) Level I</td><td>135,000–160,000</td><td>2026-06-20 刊登，已截止</td><td><a href="https://jobs.thrivecap.com/companies/spacex/jobs/83465457-gnc-engineer-starlink" target="_blank" rel="noopener">頁面</a></td></tr>
+<tr><td>SpaceX GNC Engineer (Starlink) Level II</td><td>155,000–185,000</td><td>同上</td><td>同上</td></tr>
+<tr><td>Zoox Software Engineer - Motion Planning（Foster City）</td><td>168,000–270,000</td><td>日期不明</td><td><a href="https://jobs.luxcapital.com/companies/zoox/jobs/251386-software-engineer-motion-planning" target="_blank" rel="noopener">頁面</a></td></tr>
+<tr><td>Zoox Senior/Staff Software Engineer - Controls</td><td>242,000–349,000</td><td>2025-11-01 下架</td><td><a href="https://builtin.com/job/senior-staff-software-engineer-controls/7321598" target="_blank" rel="noopener">頁面</a></td></tr>
+<tr><td>Tesla Robotics Controls Engineer, Geartrain Mfg, Optimus（Palo Alto，偏 PLC／產線）</td><td>108,000–240,000</td><td>已關閉</td><td><a href="https://jobright.ai/jobs/info/6a6936fb36d36c1ff2998d1a" target="_blank" rel="noopener">頁面</a></td></tr>
+<tr><td>Figure RL Engineer - Whole Body Control（San Jose）</td><td>150,000–350,000（另一則搜尋摘要為 200,000–350,000，兩者不一致）</td><td>約 6 個月前刊登</td><td><a href="https://zerogtalent.com/robotics-jobs/figure-ai/staff-reinforcement-learning-engineer-whole-body-control-4671442006" target="_blank" rel="noopener">頁面</a></td></tr>
+<tr><td>Boston Dynamics Staff Research Roboticist（Waltham，要 MS/PhD）</td><td>180,000–240,000</td><td>日期不明</td><td><a href="https://www.builtinboston.com/job/staff-research-roboticist/10938229" target="_blank" rel="noopener">頁面</a></td></tr>
+<tr><td>ASML Senior Controls Engineer（San Diego，要 MS＋4-9 年）</td><td>109,200–150,150</td><td>日期不明</td><td><a href="https://www.asml.com/en/careers/find-your-job/senior-controls-engineer-j00350358" target="_blank" rel="noopener">頁面</a></td></tr>
+<tr><td>Waymo Systems Engineer, Motion Control／Senior SWE Motion Controls</td><td>搜尋摘要有 196K–242K、204K–259K 等 <code>[未驗證]</code>；原頁讀不到</td><td>—</td><td>未查到可 fetch 的原頁</td></tr>
+</tbody></table></div>
+<p>註：這些區間是底薪，不含股票。同一公司不同職缺差距很大（例如 Tesla 108K–240K）。</p>
+<h3>2.2 新加坡（SGD／月）</h3>
+<div class="tbl"><table>
+<thead><tr><th>項目</th><th>數字</th><th>年份／日期</th><th>來源</th></tr></thead>
+<tbody>
+<tr><td>NUS 學士 Electrical Engineering 起薪（總月薪中位數）</td><td>4,900（P25 4,500／P75 5,400）</td><td>GES 2025（2025-11 調查）</td><td><a href="https://www.moe.gov.sg/api/media/a43cdd0b-4f2d-44f8-a98c-7ff48a7670ac/Web-Publication-NUS-GES-2025.pdf" target="_blank" rel="noopener">NUS GES 2025</a></td></tr>
+<tr><td>NUS 學士 Mechanical Engineering</td><td>5,000（P25 4,500／P75 5,591）</td><td>同上</td><td>同上</td></tr>
+<tr><td>NTU 學士 Electrical &amp; Electronic Engineering</td><td>4,800（P25 4,250／P75 5,200）</td><td>GES 2025</td><td><a href="https://www.moe.gov.sg/api/media/585fe7dc-65e3-470e-87c3-e23ceed5782b/Web-Publication-NTU-GES-2025.pdf" target="_blank" rel="noopener">NTU GES 2025</a></td></tr>
+<tr><td>NTU 學士 Mechanical／Aerospace Engineering</td><td>4,500／4,640</td><td>GES 2025</td><td>同上</td></tr>
+<tr><td>碩士起薪（NUS/NTU 工程碩士）</td><td>未查到（GES 只含學士）</td><td>—</td><td>—</td></tr>
+<tr><td>MCF 職缺「robotics engineer」，要求經驗 ≤1 年（n=18）</td><td>公告下限中位 4,650／上限中位 7,000</td><td>2026-10-07 取自 API，職缺刊登 2026-07 至 10</td><td><a href="https://api.mycareersfuture.gov.sg/v2/jobs?search=robotics%20engineer" target="_blank" rel="noopener">MyCareersFuture API</a></td></tr>
+<tr><td>MCF robotics engineer 全部（n=74）</td><td>下限中位 4,500／上限中位 7,000；P25 下限 4,000／P75 上限 9,000</td><td>同上</td><td>同上</td></tr>
+<tr><td>MCF 職缺「control engineer」，要求經驗 ≤1 年（n=37）</td><td>下限中位 3,000／上限中位 4,300</td><td>同上（取前 100 筆，共 193 筆；含建築自動化、PLC、儀控，雜訊大）</td><td><a href="https://api.mycareersfuture.gov.sg/v2/jobs?search=control%20engineer" target="_blank" rel="noopener">MCF API</a></td></tr>
+<tr><td>MCF control engineer，經驗 2-4 年（n=47）</td><td>下限中位 3,800／上限中位 5,000</td><td>同上</td><td>同上</td></tr>
+<tr><td>MCF control engineer，經驗 ≥7 年（n=7）</td><td>下限中位 8,200／上限中位 11,000</td><td>同上</td><td>同上</td></tr>
+</tbody></table></div>
+<p>解讀：新加坡機器人／控制入門職缺大約 S$4,000–7,000／月，傳統 PLC 型控制職缺偏低；高薪（S$6,800–13,600）多半是 AI／機器人研究型職缺。</p>
+<h3>2.3 德國（EUR／年，稅前）</h3>
+<div class="tbl"><table>
+<thead><tr><th>項目</th><th>數字</th><th>年份</th><th>來源</th></tr></thead>
+<tbody>
+<tr><td>Automatisierungsingenieur 全德中位數</td><td>63,922（P25 57,335／P75 71,266）；&lt;3 年經驗 53,681；9 年以上 69,637；員工 20,000 人以上公司 78,169</td><td>2026 抓取，Gehalt.de</td><td><a href="https://www.gehalt.de/beruf/automatisierungsingenieur-automatisierungsingenieurin" target="_blank" rel="noopener">Gehalt.de</a></td></tr>
+<tr><td>Regelungstechniker/in（偏技術員層級）</td><td>平均 64,000（範圍 42,000–70,000）；入門（0-2 年）45,000；慕尼黑 76,160、斯圖加特 71,040</td><td>Datenstand 2026-07，JobJump</td><td><a href="https://jobjump.net/gehalt/pdf/gehaltsprofil-regelungstechniker-in-2026.pdf" target="_blank" rel="noopener">JobJump PDF</a></td></tr>
+<tr><td>同表「Ingenieur/in - Automatisierungstechnik」</td><td>70,250</td><td>同上</td><td>同上</td></tr>
+<tr><td>工程師整體：碩士入門</td><td>52,500；學士 47,500；Dr.-Ing. 62,000；整體平均 63,800</td><td>2026，INGENIEURCENTER（求職網站估算，非官方統計）</td><td><a href="https://www.ingenieurcenter.de/files/INGENIEURCENTER-Gehaltsreport-2026.pdf" target="_blank" rel="noopener">Gehaltsreport 2026</a></td></tr>
+<tr><td>同報告：Premium OEM（BMW、Mercedes、Porsche）入門</td><td>58,000–65,000</td><td>同上</td><td>同上</td></tr>
+<tr><td>同報告：Tier-1（Bosch、Continental、ZF）入門</td><td>52,000–58,000</td><td>同上</td><td>同上</td></tr>
+<tr><td>同報告：Siemens、ABB 入門</td><td>54,000–60,000</td><td>同上</td><td>同上</td></tr>
+<tr><td>Stepstone Gehaltsreport、jobvector 的 Regelungstechnik</td><td>未查到（403）</td><td>—</td><td>—</td></tr>
+<tr><td>Bosch／Siemens／ZF／BMW 公司別官方入門薪資</td><td>未查到（公司不公布；上面是產業估算）</td><td>—</td><td>—</td></tr>
+</tbody></table></div>
+<p>兩個來源差很多時：Regelungstechniker（技術員層級）入門 45,000，與工程師碩士入門 52,500–53,681 有約 8,000 的差距，因為前者包含非大學學歷的職位。碩士應看工程師那一列。</p>
+<h2>3. 留下工作的可行性</h2>
+<div class="tbl"><table>
+<thead><tr><th>地點</th><th>路徑（一句話）</th><th>來源</th></tr></thead>
+<tbody>
+<tr><td>美國</td><td>F-1 畢業後 OPT，STEM 科系可再延 24 個月（雇主須加入 E-Verify）；之後靠 H-1B：一般名額 65,000＋美國碩士以上額外 20,000，須電子登記抽籤；2025-09-21 起加收 US$100,000 的規定，法院於 2026-06-08 判決撤銷，政府上訴中（適用範圍是人在境外的受益人）</td><td><a href="https://www.uscis.gov/working-in-the-united-states/students-and-exchange-visitors/optional-practical-training-extension-for-stem-students-stem-opt" target="_blank" rel="noopener">USCIS STEM OPT</a>、<a href="https://www.uscis.gov/working-in-the-united-states/h-1b-specialty-occupations" target="_blank" rel="noopener">USCIS H-1B</a></td></tr>
+<tr><td>新加坡</td><td>沒有畢業後工作簽；要靠雇主申請 EP：先過薪資門檻（一般產業 23 歲以下 S$5,600 到 45 歲以上 S$10,700，2027-01-01 起調高），再過 COMPASS 40 分（薪資、學歷、國籍多元、雇主在地化、短缺職業、策略優先）</td><td><a href="https://www.mom.gov.sg/passes-and-permits/employment-pass/eligibility" target="_blank" rel="noopener">MOM EP</a></td></tr>
+<tr><td>德國</td><td>德國大學畢業可拿最長 18 個月找工作居留（須證明生活費）；有 offer 可轉 EU Blue Card（最低薪資門檻未查到）；若沒找到工作，可再申請 Chancenkarte 多一年</td><td><a href="https://www.bamf.de/EN/Themen/MigrationAufenthalt/ZuwandererDrittstaaten/Arbeit/Hochschulabsolvent/hochschulabsolvent-node.html" target="_blank" rel="noopener">BAMF</a></td></tr>
+</tbody></table></div>
+<p>註：美國 OPT 初始 12 個月、新加坡 EP 對台灣人的 COMPASS 得分，本次沒有讀到官方原頁，不寫。</p>
+<h2>4. 台灣對照</h2>
+<div class="tbl"><table>
+<thead><tr><th>項目</th><th>數字</th><th>年份</th><th>來源</th></tr></thead>
+<tbody>
+<tr><td>104「工程研發」職類平均月薪</td><td>NT$61,392／月（所有 43 職類平均 NT$46,617）</td><td>2024</td><td><a href="https://blog.104.com.tw/104data-position-salary-2024/" target="_blank" rel="noopener">104 部落格</a></td></tr>
+<tr><td>控制工程師／機器人工程師專屬中位數</td><td>未查到（104、1111 擋爬蟲；104 搜尋 API 被 Cloudflare 驗證擋下，未繞過）</td><td>—</td><td>—</td></tr>
+</tbody></table></div>
+<p>這是職類平均，不是中位數，也不是控制工程師專屬，只能當上限量級參考。換算：NT$61,392×12 約 NT$73.7 萬／年（未含年終；僅算術，非來源數字）。</p>
+<h2>5. PhD vs 碩士（只寫有證據的）</h2>
+<ul><li>控制／規劃的產品工程職：Zoox Controls 職缺寫 BS 或 MS，PhD 為加分。SpaceX GNC（Starlink）最低 Bachelor，偏好 Master 或 PhD。ASML Senior Controls 要 Master。→ 碩士足夠進入。</li><li>研究型：Boston Dynamics Staff Research Roboticist 要 Master 或 PhD（ML/RL 部署在實體機器人上）。Figure 的 WBC RL 職缺沒寫學位，但要 RL、動力學與控制的深度背景。</li><li>「自駕規控核心演算法多半要 PhD」：本次只讀到 Zoox 規劃職缺要 Master（不是 PhD），所以沒有證據支持「必須 PhD」。Waymo／Tesla 的學位要求原頁沒讀到，未查到。</li><li>德國薪資：Dr.-Ing. 入門 62,000，比碩士 52,500 高約 18%（INGENIEURCENTER，估算值）。</li></ul>
+<h2>6. 三地入門代表數字（方便比較）</h2>
+<div class="tbl"><table>
+<thead><tr><th>地點</th><th>代表數字</th><th>說明</th></tr></thead>
+<tbody>
+<tr><td>美國</td><td>底薪 US$135,000–160,000／年（SpaceX Starlink GNC Level I，2026-06）</td><td>太空 GNC，只算底薪；BLS 電機工程師全體中位 US$125,040（May 2025）</td></tr>
+<tr><td>新加坡</td><td>S$4,650–7,000／月（MCF robotics engineer，經驗 ≤1 年的中位下限與上限，2026-10）</td><td>NUS EE 學士起薪中位 S$4,900／月（GES 2025）</td></tr>
+<tr><td>德國</td><td>€52,500／年（工程師碩士入門，INGENIEURCENTER 2026，估算）；Gehalt.de Automatisierungsingenieur &lt;3 年 €53,681</td><td>Bosch／ZF 類 Tier-1 入門 €52,000–58,000</td></tr>
+<tr><td>台灣</td><td>NT$61,392／月（104 工程研發職類平均，2024）</td><td>非控制專屬</td></tr>
+</tbody></table></div>
+<h2>7. 本次未查到清單</h2>
+<ol><li>Levels.fyi 專屬 Controls／Robotics Engineer 彙總（多家目標公司）。</li><li>Waymo Motion Control 職缺原頁（只有搜尋摘要）。</li><li>Stepstone、jobvector Regelungstechnik 薪資。</li><li>Bosch／Siemens／ZF／BMW 公司別官方入門薪資。</li><li>NUS/NTU 工程碩士起薪（GES 只含學士）。</li><li>104／1111 控制工程師、機器人工程師專屬中位數。</li><li>德國 EU Blue Card 最低薪資門檻；美國初始 OPT 月數的官方頁。</li><li>量化金融與電池／製程控制路徑的 PhD 要求。</li></ol>
+</div></body></html>

@@ -1,0 +1,53 @@
+/* Layout: sticky tab bar, one content column, data tables scroll inside their own box */
+:root{
+  --bg:#f4f6f8; --surface:#ffffff; --fg:#17212b; --muted:#5b6b7a; --line:#d6dde4;
+  --accent:#0b5d8a; --accent-soft:#e3eef5;
+  --ok:#1f7a4d; --warn:#b4650a; --bad:#a3302a; --ok-soft:#e2f2e9; --warn-soft:#fbeedb; --bad-soft:#f8e3e1;
+  --body:"Noto Sans TC",system-ui,-apple-system,"PingFang TC",sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0f161d; --surface:#172129; --fg:#e6edf3; --muted:#9bb0c1; --line:#2b3a47;
+  --accent:#5fb3e6; --accent-soft:#1a2e3d;
+  --ok:#6fd39a; --warn:#f0b35c; --bad:#f08a82; --ok-soft:#163626; --warn-soft:#3d2a12; --bad-soft:#3f1d1b; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0f161d; --surface:#172129; --fg:#e6edf3; --muted:#9bb0c1; --line:#2b3a47;
+  --accent:#5fb3e6; --accent-soft:#1a2e3d;
+  --ok:#6fd39a; --warn:#f0b35c; --bad:#f08a82; --ok-soft:#163626; --warn-soft:#3d2a12; --bad-soft:#3f1d1b; color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--body);font-size:15px;line-height:1.6}
+.wrap{max-width:1040px;margin:0 auto;padding-block:20px 56px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+header h1{font-size:1.55rem;margin:0 0 4px;letter-spacing:.01em;text-wrap:balance}
+header p{margin:0;color:var(--muted);max-width:70ch}
+.meta{display:flex;flex-wrap:wrap;gap:8px 18px;margin:14px 0 0;font-family:var(--mono);font-size:.8rem;color:var(--muted)}
+.meta b{color:var(--fg);font-weight:500}
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:2;background:var(--bg);padding:14px 0 10px;margin-top:14px;border-bottom:1px solid var(--line);display:flex;gap:6px;flex-wrap:wrap}
+nav button{font:inherit;font-size:.9rem;padding:6px 12px;border:1px solid var(--line);background:var(--surface);color:var(--fg);border-radius:6px;cursor:pointer}
+nav button[aria-selected="true"]{background:var(--accent);border-color:var(--accent);color:#fff}
+nav button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+section[role="tabpanel"]{padding-top:22px}
+[hidden]{display:none!important}
+h2{font-size:1.15rem;margin:0 0 12px}
+h3{font-size:1rem;margin:22px 0 8px}
+p{max-width:68ch}
+.pill{display:inline-block;font-size:.75rem;font-weight:500;padding:1px 8px;border-radius:999px;white-space:nowrap}
+.ok{background:var(--ok-soft);color:var(--ok)} .warn{background:var(--warn-soft);color:var(--warn)} .bad{background:var(--bad-soft);color:var(--bad)} .info{background:var(--accent-soft);color:var(--accent)}
+.tbl{overflow-x:auto;border:1px solid var(--line);border-radius:8px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;min-width:640px;font-size:.88rem}
+th,td{padding:8px 10px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+th{font-weight:500;color:var(--muted);font-size:.8rem;letter-spacing:.04em;text-transform:uppercase;background:var(--bg)}
+tr:last-child td{border-bottom:0}
+td.d{font-family:var(--mono);font-variant-numeric:tabular-nums;white-space:nowrap}
+.past td{color:var(--muted)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:14px 16px;min-width:0}
+.card h3{margin:0 0 6px;font-size:.95rem}
+.card .big{font-family:var(--mono);font-size:1.35rem;font-weight:500;line-height:1.25}
+.card small{color:var(--muted);display:block;margin-top:4px}
+ol,ul{padding-left:1.3em} li{margin:4px 0}
+.note{border:1px solid var(--line);background:var(--accent-soft);padding:10px 14px;border-radius:6px;margin:14px 0;max-width:80ch}
+.note.warn{background:var(--warn-soft)}
+.src{font-size:.8rem;color:var(--muted);margin-top:10px}
+a{color:var(--accent)}
+/* Article pages */
+.article{max-width:860px} .article h2{margin-top:32px} .article h3{margin-top:22px} .article p{max-width:72ch} .back{display:inline-block;margin-bottom:14px;font-size:.9rem} .article blockquote{border-left:3px solid var(--line);margin:12px 0;padding:4px 14px;color:var(--muted)} .article code{font-family:var(--mono);font-size:.85em;background:var(--accent-soft);padding:1px 4px;border-radius:4px}

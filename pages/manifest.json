@@ -1,0 +1,44 @@
+[
+  {
+    "file": "pages/us-robotics-ms.html",
+    "title": "美國機器人／自主系統／AI 硬體碩士調查：GPA 3.37/4.3、2027 秋入學",
+    "date": "2026-10-07",
+    "lines": 220,
+    "summary": "頂尖 robotics 碩士（CMU MRSD、Michigan、Northwestern、GT）對他是 reach，而且偏難。"
+  },
+  {
+    "file": "pages/uw-cse-robotics.html",
+    "title": "UW Allen School（CSE）Robotics：VLM／基礎模型 vs 控制理論？",
+    "date": "2026-10-07",
+    "lines": 186,
+    "summary": "Allen School 的 robotics 以 robot learning／基礎模型為主，控制理論幾乎沒有。"
+  },
+  {
+    "file": "pages/control-careers-abroad.html",
+    "title": "國外讀控制碩士：出路與待遇（美國／新加坡／德國）",
+    "date": "2026-10-07",
+    "lines": 132,
+    "summary": "「自駕規控核心演算法多半要 PhD」：本次只讀到 Zoox 規劃職缺要 Master（不是 PhD），所以沒有證據支持「必須 PhD」。"
+  },
+  {
+    "file": "pages/ntu-control-reputation.html",
+    "title": "為什麼大家對台大自控評價那麼低？社群觀點整理（2026-10-07）",
+    "date": "2026-10-07",
+    "lines": 148,
+    "summary": "所以比較合理的解讀是：這組進去難，出來卻多半跟其他電機組做一樣的韌體工作，「投入跟報酬不成比例」，這才是被嫌的主因。"
+  },
+  {
+    "file": "pages/ai-for-hardware-startups.html",
+    "title": "AI for 韌體與硬體：新創題目地圖（2026-10-07）",
+    "date": "2026-10-07",
+    "lines": 176,
+    "summary": "AI 控制機器的長期目標，最對口的是第 6 類（控制工程師職缺明確存在）；第 1、7 類（韌體 + HIL）是 EE/控制背景可切入的新興邊緣，但公司極小、多要有經驗；第 4 類偏純軟體／EDA。"
+  },
+  {
+    "file": "pages/ai-for-firmware-industry.html",
+    "title": "AI for 韌體：業界現況調查（2026-10-07）",
+    "date": "2026-10-07",
+    "lines": 145,
+    "summary": "瓶頸不在「寫出 C 程式」，而在「對特定晶片的正確性驗證」。"
+  }
+]
