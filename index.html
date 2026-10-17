@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>研究所申請站</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: sticky tab bar, one content column, data tables scroll inside their own box */
+:root{
+  --bg:#f4f6f8; --surface:#ffffff; --fg:#17212b; --muted:#5b6b7a; --line:#d6dde4;
+  --accent:#0b5d8a; --accent-soft:#e3eef5;
+  --ok:#1f7a4d; --warn:#b4650a; --bad:#a3302a; --ok-soft:#e2f2e9; --warn-soft:#fbeedb; --bad-soft:#f8e3e1;
+  --body:"Noto Sans TC",system-ui,-apple-system,"PingFang TC",sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0f161d; --surface:#172129; --fg:#e6edf3; --muted:#9bb0c1; --line:#2b3a47;
+  --accent:#5fb3e6; --accent-soft:#1a2e3d;
+  --ok:#6fd39a; --warn:#f0b35c; --bad:#f08a82; --ok-soft:#163626; --warn-soft:#3d2a12; --bad-soft:#3f1d1b; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0f161d; --surface:#172129; --fg:#e6edf3; --muted:#9bb0c1; --line:#2b3a47;
+  --accent:#5fb3e6; --accent-soft:#1a2e3d;
+  --ok:#6fd39a; --warn:#f0b35c; --bad:#f08a82; --ok-soft:#163626; --warn-soft:#3d2a12; --bad-soft:#3f1d1b; color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--body);font-size:15px;line-height:1.6}
+.wrap{max-width:1040px;margin:0 auto;padding-block:20px 56px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+header h1{font-size:1.55rem;margin:0 0 4px;letter-spacing:.01em;text-wrap:balance}
+header p{margin:0;color:var(--muted);max-width:70ch}
+.meta{display:flex;flex-wrap:wrap;gap:8px 18px;margin:14px 0 0;font-family:var(--mono);font-size:.8rem;color:var(--muted)}
+.meta b{color:var(--fg);font-weight:500}
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:2;background:var(--bg);padding:14px 0 10px;margin-top:14px;border-bottom:1px solid var(--line);display:flex;gap:6px;flex-wrap:wrap}
+nav button{font:inherit;font-size:.9rem;padding:6px 12px;border:1px solid var(--line);background:var(--surface);color:var(--fg);border-radius:6px;cursor:pointer}
+nav button[aria-selected="true"]{background:var(--accent);border-color:var(--accent);color:#fff}
+nav button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+section[role="tabpanel"]{padding-top:22px}
+[hidden]{display:none!important}
+h2{font-size:1.15rem;margin:0 0 12px}
+h3{font-size:1rem;margin:22px 0 8px}
+p{max-width:68ch}
+.pill{display:inline-block;font-size:.75rem;font-weight:500;padding:1px 8px;border-radius:999px;white-space:nowrap}
+.ok{background:var(--ok-soft);color:var(--ok)} .warn{background:var(--warn-soft);color:var(--warn)} .bad{background:var(--bad-soft);color:var(--bad)} .info{background:var(--accent-soft);color:var(--accent)}
+.tbl{overflow-x:auto;border:1px solid var(--line);border-radius:8px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;min-width:640px;font-size:.88rem}
+th,td{padding:8px 10px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+th{font-weight:500;color:var(--muted);font-size:.8rem;letter-spacing:.04em;text-transform:uppercase;background:var(--bg)}
+tr:last-child td{border-bottom:0}
+td.d{font-family:var(--mono);font-variant-numeric:tabular-nums;white-space:nowrap}
+.past td{color:var(--muted)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:14px 16px;min-width:0}
+.card h3{margin:0 0 6px;font-size:.95rem}
+.card .big{font-family:var(--mono);font-size:1.35rem;font-weight:500;line-height:1.25}
+.card small{color:var(--muted);display:block;margin-top:4px}
+ol,ul{padding-left:1.3em} li{margin:4px 0}
+.note{border-left:3px solid var(--accent);background:var(--accent-soft);padding:10px 14px;border-radius:0 6px 6px 0;margin:14px 0;max-width:80ch}
+.note.warn{border-color:var(--warn);background:var(--warn-soft)}
+.src{font-size:.8rem;color:var(--muted);margin-top:10px}
+a{color:var(--accent)}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <h1>研究所申請站</h1>
+  <p>目標：四大（MIT / Stanford / Berkeley / CMU）的 CS、ECE 相關<b>專業型</b>碩士。計畫延畢一年，在這一年發一篇論文（方向：AI safety）。所有數字來自 Desktop 調查檔；標 [unverified] 的尚未查證。</p>
+  <div class="meta">
+    <span>GPA <b>3.37 / 4.3</b>（換算 ≈ 3.2–3.4 / 4.0，推算）</span>
+    <span>系排 <b>78%</b></span>
+    <span>延畢後畢業 <b>2028-06</b></span>
+    <span>主申請季 <b>Fall 2028（2027-12 截止）</b></span>
+    <span>更新 <b>2026-10-18</b></span>
+  </div>
+</header>
+
+<nav role="tablist" aria-label="分頁">
+  <button role="tab" data-tab="timeline" aria-selected="true">時程</button>
+  <button role="tab" data-tab="roadmap">練功路線</button>
+  <button role="tab" data-tab="big4">四大</button>
+  <button role="tab" data-tab="cmu">CMU</button>
+  <button role="tab" data-tab="us">其他美國學程</button>
+  <button role="tab" data-tab="ntu">台大</button>
+</nav>
+
+<section role="tabpanel" id="timeline">
+  <h2>延畢一年版時程（2026-10 → 2028-08）</h2>
+  <div class="note warn">衝突要先解：台大 AI 所若 11/19 錄取，入學是 2027-09，和「延畢一年發論文」撞期。三條路：(A) 放棄台大碩，延畢專心發論文、2027-12 申 Fall 2028；(B) 去台大碩，碩一發論文、2028-12 申 Fall 2029；(C) 問所辦能否保留入學資格一年 [unverified，需問所辦]。</div>
+  <div class="tbl"><table>
+    <thead><tr><th>日期</th><th>事項</th><th>類別</th><th>狀態</th></tr></thead>
+    <tbody>
+      <tr class="past"><td class="d">2026-10-08</td><td>台大 AI 所推甄文件上傳截止</td><td>台大</td><td><span class="pill ok">完成</span></td></tr>
+      <tr><td class="d">2026-10-30</td><td>AI 所口試名單公告</td><td>台大</td><td><span class="pill info">等待</span></td></tr>
+      <tr><td class="d">2026-11-09</td><td>AI 所口試</td><td>台大</td><td><span class="pill warn">準備中</span></td></tr>
+      <tr><td class="d">2026-11-19</td><td>AI 所放榜 → 決定走 A / B / C</td><td>決策</td><td><span class="pill warn">關鍵</span></td></tr>
+      <tr><td class="d">2026-11 → 2027-01</td><td>找論文指導者：台大 LLM / NLP 老師，或申請 SPAR、MATS 等 AI safety 遠距研究計畫 [unverified，確認 2027 梯次]</td><td>研究</td><td><span class="pill warn">立刻開始</span></td></tr>
+      <tr><td class="d">2027-01 → 2027-05</td><td>題目定案、跑完主實驗（練功路線第 3 段）</td><td>研究</td><td><span class="pill info">—</span></td></tr>
+      <tr><td class="d">2027-05 → 2027-06</td><td>投 NeurIPS 2027 workshop 或 main（main 約 5 月截止）[unverified]</td><td>研究</td><td><span class="pill info">—</span></td></tr>
+      <tr><td class="d">2027-06 → 2027-08</td><td>TOEFL、GRE（CMU MRSD 要求 GRE；多數四大 CS 碩不要求，逐校確認）</td><td>考試</td><td><span class="pill info">—</span></td></tr>
+      <tr><td class="d">2027-09 → 2027-10</td><td>NeurIPS workshop 截止多在 9–10 月；ICLR 2028 main 約 10 月初 [unverified]</td><td>研究</td><td><span class="pill info">第二次機會</span></td></tr>
+      <tr><td class="d">2027-10</td><td>向 3 位推薦人開口；SoP 初稿</td><td>申請</td><td><span class="pill info">—</span></td></tr>
+      <tr><td class="d">2027-12-01 → 12-15</td><td>四大 CS/ECE 碩士截止集中在此（CMU SCS 多為 12 月中；Stanford MSCS 約 12 月初）[unverified，待兩份調查檔]</td><td>申請</td><td><span class="pill bad">主戰場</span></td></tr>
+      <tr><td class="d">2028-01 → 2028-03</td><td>其他美國學程截止（UMD 3/9、Northeastern 6/15）</td><td>申請</td><td><span class="pill ok">保險</span></td></tr>
+      <tr><td class="d">2028-06</td><td>延畢畢業</td><td>學籍</td><td><span class="pill info">—</span></td></tr>
+      <tr><td class="d">2028-08</td><td>赴美入學</td><td>—</td><td><span class="pill info">—</span></td></tr>
+    </tbody>
+  </table></div>
+  <p class="src">會議截止日為往年慣例，2027 的實際日期要等官網公布。</p>
+</section>
+
+<section role="tabpanel" id="roadmap">
+  <h2>接下來一年該練什麼</h2>
+  <p>專業型碩士看三件事：成績單、推薦信、你做過什麼。GPA 已經定型，所以這一年的全部籌碼是「一篇論文 ＋ 三封強推薦信」。下面依序，不要並行太多。</p>
+
+  <h3>第 1 段（2026-11 → 2027-01）：補基礎，同時找指導者</h3>
+  <div class="grid">
+    <div class="card"><h3>數學</h3><div class="big">線代 · 機率 · 最佳化</div><small>目標：能看懂 ML 論文的證明段。可用台大本系課或 MIT OCW 18.06 / 6.036 補。</small></div>
+    <div class="card"><h3>機器學習</h3><div class="big">一門完整的 ML + 一門 DL</div><small>台大李宏毅 ML 課程公開影片全部作業做完，是最便宜的路 [課程內容需自行確認當年版本]。</small></div>
+    <div class="card"><h3>工程</h3><div class="big">PyTorch · Git · Linux · HF</div><small>能在一天內從 Hugging Face 拉模型、跑 eval、改 training loop。這是做 AI safety 實驗的最低門檻。</small></div>
+    <div class="card"><h3>指導者</h3><div class="big">台大 LLM 老師 或 遠距計畫</div><small>台大做 LLM / NLP 的老師（例如李宏毅、陳縕儂）[研究方向需自行確認]；或申請 SPAR / MATS 這類有 mentor 的 AI safety 計畫 [unverified]。沒有指導者的論文很難過審。</small></div>
+  </div>
+
+  <h3>第 2 段（2027-01 → 2027-03）：選一個做得完的 AI safety 題目</h3>
+  <p>大學部一年能做完、審稿人認可的方向，依「入門難度」排：</p>
+  <ol>
+    <li><b>Evaluations / red-teaming</b>：設計一個新 benchmark 或攻擊方法，量化某類模型失效。工程重、理論輕，最容易一年內產出。</li>
+    <li><b>Mechanistic interpretability</b>：用 TransformerLens 一類工具找小模型裡的 circuit。社群開放、工具成熟、題目很多。</li>
+    <li><b>Alignment training</b>：RLHF / DPO 的變體、reward hacking 分析。需要算力，先確認老師有 GPU。</li>
+    <li><b>Robustness / jailbreak defense</b>：和 1 互補，但競爭最激烈。</li>
+  </ol>
+  <p>投稿目標：NeurIPS / ICLR / ICML 的 safety 相關 workshop 為主（通過率高、對申請有效），main track 當加分。SaTML 是 safety 專門會議。</p>
+
+  <h3>第 3 段（2027-03 → 2027-10）：做實驗、寫、投</h3>
+  <ul>
+    <li>每週固定和指導者 meeting，留紀錄（之後推薦信素材）。</li>
+    <li>程式碼開源在 GitHub，README 寫清楚；申請時可附連結。</li>
+    <li>第一次投稿失敗很正常，9–10 月的 workshop 是第二次機會。</li>
+  </ul>
+
+  <h3>第 4 段（2027-06 → 2027-11）：考試與文件</h3>
+  <ul>
+    <li>TOEFL：四大 CS 碩多要求 100 左右 [unverified，逐校表見四大分頁]。</li>
+    <li>GRE：只有部分學程要求（CMU MRSD 要）；要申就一次考完。</li>
+    <li>推薦信三封：論文指導者 ＋ 一位給過你高分的授課老師 ＋ 專題或實習主管。</li>
+    <li>SoP 主軸：「GPA 不漂亮，但這一年我獨立完成了一篇 AI safety 論文」。</li>
+  </ul>
+</section>
+
+<section role="tabpanel" id="big4">
+  <h2>四大：哪些是專業型、外校國際生能申</h2>
+  <div class="note">調查進行中（2026-10-18）。Stanford / Berkeley / MIT 的專業型 CS、EE 碩士逐學程表將由「四大專業型碩士調查_Stanford_Berkeley_MIT_2026-10-18.md」填入；CMU 另有分頁。</div>
+  <p>目前已知、尚未逐校查證 [unverified]：</p>
+  <ul>
+    <li><b>MIT</b>：EECS MEng 只收 MIT 大學部；外校人沒有獨立的 EECS 修課型碩士。</li>
+    <li><b>Stanford</b>：MS CS、MS EE 是修課型，看 GPA 很重。</li>
+    <li><b>Berkeley</b>：MEng EECS 一年制專業型；MS EECS 多為 PhD 軌。</li>
+    <li><b>CMU</b>：專業型碩士最多，是四大裡最寬的門。</li>
+  </ul>
+</section>
+
+<section role="tabpanel" id="cmu">
+  <h2>CMU 專業型（非研究型）碩士</h2>
+  <div class="note">調查進行中（2026-10-18）。完成後此頁更新為逐學程表：是否要論文、GRE、截止日、學費、錄取案例。來源檔：CMU專業型碩士調查_2026-10-18.md。</div>
+  <p>目前已知（10-07 檔）：MRSD 是專業型但 3.22–3.30 錄取者都有 NeurIPS 一作或 2 年業界；MSR 是研究型，不列入。</p>
+</section>
+
+<section role="tabpanel" id="us">
+  <h2>其他美國機器人 / AI 碩士（保險用）</h2>
+  <p>分級針對「3.2–3.4/4.0、台灣國際生、無頂會論文」。有一篇論文後，Reach 可視為 Match。學費為 2026-27 學年、不含生活費；「推算」= 每學分價 × 學分數。</p>
+  <div class="tbl"><table>
+    <thead><tr><th>分級</th><th>學校 / 學程</th><th>最低 GPA</th><th>GRE</th><th>截止（每年）</th><th>學費</th><th>依據</th></tr></thead>
+    <tbody>
+      <tr><td><span class="pill ok">Safety</span></td><td>ASU · MS Robotics &amp; Autonomous Systems</td><td>last 60 hr ≥ 3.00</td><td>不要求</td><td class="d">12/31 priority</td><td>找不到</td><td>3.21–3.40 國際生全錄取</td></tr>
+      <tr><td><span class="pill ok">Safety</span></td><td>WPI · MS Robotics Engineering</td><td>3.0</td><td>多數不要求</td><td class="d">Rolling</td><td>≈ $53,250 推算</td><td>門檻低＋rolling，無案例</td></tr>
+      <tr><td><span class="pill ok">Match</span></td><td>Northeastern · MS Robotics（可 co-op）</td><td>沒寫</td><td>Optional</td><td class="d">6/15 境外</td><td>$61.5k–63.4k</td><td>3.22、3.28 國際生錄取</td></tr>
+      <tr><td><span class="pill ok">Match</span></td><td>UMD · MEng Robotics（MAGE）</td><td>3.0</td><td>Recommended</td><td class="d">3/9</td><td>≈ $38,130 推算</td><td>3.29 國際生錄取；最便宜之一</td></tr>
+      <tr><td><span class="pill ok">Match</span></td><td>Purdue · MS Robotics（Interdisciplinary）</td><td>3.2</td><td>Optional</td><td class="d">1/15 priority</td><td>找不到</td><td>3.28 國際生錄取</td></tr>
+      <tr><td><span class="pill ok">Match</span></td><td>BU · MS Robotics &amp; Autonomous Systems</td><td>沒寫</td><td>不要求</td><td class="d">1/15 priority</td><td>≈ $73,024 推算</td><td>同院 ECE 3.26 國際生錄取</td></tr>
+      <tr><td><span class="pill ok">Match</span></td><td>NYU Tandon · MS Mechatronics &amp; Robotics</td><td>沒寫</td><td>Optional</td><td class="d">12/1 priority</td><td>找不到</td><td>3.00、3.32 錄取（美國人）</td></tr>
+      <tr><td><span class="pill warn">Match 偏 Reach</span></td><td>USC · MS ECE（ML &amp; Data Science）</td><td>無公式</td><td>不要求</td><td class="d">1/15</td><td>≈ $87,744 推算</td><td>3.28 錄取者有 2 篇論文</td></tr>
+      <tr><td><span class="pill warn">Match</span></td><td>UMass Amherst · MS ECE</td><td>錄取者「generally above 3.25」</td><td>[unverified]</td><td class="d">1/15</td><td>≈ $19k/學期</td><td>在門檻邊上</td></tr>
+      <tr><td><span class="pill bad">Reach</span></td><td>Penn · MSE Robotics（GRASP）</td><td>沒寫</td><td>強烈建議，均 Q168</td><td class="d">11/1 early · 2/1</td><td>找不到</td><td>錄取率 ≈ 37%</td></tr>
+      <tr><td><span class="pill bad">Reach</span></td><td>Georgia Tech · MS Robotics</td><td>「generally 3.3」</td><td>看 home school</td><td class="d">2/1（ECE）</td><td>找不到</td><td>GT ECE 3.30 國際生被拒</td></tr>
+      <tr><td><span class="pill bad">Reach</span></td><td>JHU · Robotics MSE</td><td>沒寫</td><td>不要求</td><td class="d">12/15 · 1/15 [unverified]</td><td>找不到</td><td>3.20 國際生錄取但 Q168</td></tr>
+      <tr><td><span class="pill bad">Reach</span></td><td>UMich · MS Robotics</td><td>入學平均 3.81</td><td>Optional</td><td class="d">1/15</td><td>找不到</td><td>3.05 國際生被拒</td></tr>
+      <tr><td><span class="pill bad">Reach</span></td><td>UCSD · MS ECE（ISRC）</td><td>3.0</td><td>不要求</td><td class="d">1/6</td><td>≈ $76,174 推算</td><td>impacted；3.28 國際生被拒</td></tr>
+      <tr><td><span class="pill bad">排除</span></td><td>CU Boulder · MS Robotics</td><td>3.2</td><td>—</td><td class="d">—</td><td>—</td><td>本屆不收 F-1</td></tr>
+      <tr><td><span class="pill bad">排除</span></td><td>UT Austin</td><td>—</td><td>—</td><td class="d">—</td><td>—</td><td>沒有機器人碩士</td></tr>
+    </tbody>
+  </table></div>
+  <p class="src">完整 URL、26 筆案例、STEM OPT 狀態：美國機器人與AI硬體碩士調查_2026-10-07.md。</p>
+</section>
+
+<section role="tabpanel" id="ntu">
+  <h2>台大 116 學年度</h2>
+  <div class="grid">
+    <div class="card"><h3>已申請</h3><div class="big">人工智慧研究所</div><small>推甄（一推），已繳費送件；電信丙已繳費但未送件</small></div>
+    <div class="card"><h3>目標教授</h3><div class="big">李濬屹 · 柯宗瑋 · 孫紹華</div><small>就學計畫以 robot learning ＋ world model 為軸</small></div>
+    <div class="card"><h3>備案</h3><div class="big">考試入學 免筆試書審組</div><small>簡章 ~11/10、報名 12/1–12/8（預定）</small></div>
+  </div>
+  <h3>已準備的文件</h3>
+  <ul>
+    <li>就學計畫（LaTeX）：robot learning 與 world model 研究方向</li>
+    <li>五項專業成就（LaTeX）：含高中物理學科能力競賽全國賽一等獎</li>
+    <li>證件照</li>
+  </ul>
+  <h3>口試準備重點（11/9）</h3>
+  <ol>
+    <li>兩分鐘自我介紹：為什麼是 robot learning，為什麼是這三位老師</li>
+    <li>就學計畫裡每一個名詞都要能被追問（world model、sim-to-real、policy learning）</li>
+    <li>GPA 偏低的回答：直接承認，接「大三下之後的專題／修課表現」當證據</li>
+  </ol>
+  <p class="src">相關檔案：台大目標所教授名單_2026-10-06.md、台大AI硬體與控制實驗室_2026-10-07.md、台大電機甲自動控制_錄取案例_2026-10-07.md。</p>
+</section>
+</div>
+
+<script>
+(function(){
+  var tabs=document.querySelectorAll('nav [role=tab]'),panels=document.querySelectorAll('[role=tabpanel]');
+  function show(id){
+    var found=false;
+    panels.forEach(function(p){if(p.id===id)found=true});
+    if(!found)id='timeline';
+    panels.forEach(function(p){p.hidden=p.id!==id});
+    tabs.forEach(function(t){t.setAttribute('aria-selected',String(t.dataset.tab===id))});
+    try{localStorage.setItem('tab',id)}catch(e){}
+  }
+  tabs.forEach(function(t){t.addEventListener('click',function(){show(t.dataset.tab);try{history.replaceState(null,'','#'+t.dataset.tab)}catch(e){}})});
+  var h=(location.hash||'').slice(1),saved=null;try{saved=localStorage.getItem('tab')}catch(e){}
+  show(h||saved||'timeline');
+})();
+</script>
+</body>
+</html>
